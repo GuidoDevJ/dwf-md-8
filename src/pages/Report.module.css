@@ -1,0 +1,17 @@
+.container{
+    position:relative;
+    width:100vw;
+    margin-bottom: 30px;
+  }
+  .container_body{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
+    height:auto;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .link{
+    margin-bottom: 50px;
+  }

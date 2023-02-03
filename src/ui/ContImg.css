@@ -1,0 +1,9 @@
+.img{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.img img{
+    width:100px;
+    height: 70px;
+}

@@ -1,0 +1,104 @@
+.container{
+    display:grid;
+    grid-template-rows: repeat(2,1fr);
+    width:335px;
+    height:260px;
+    border:1px solid black;
+}
+.image{
+    width: 100%;
+    height:147px;
+    background-color:red;
+}
+.image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    margin-left: 0;
+}
+.data{
+    display:flex;
+    justify-content:space-between;
+}
+.names{
+    margin-left:10px;
+}
+.data h2{
+    margin-top:0px;
+    margin-bottom:0px;
+    font-size:40px;
+    font-weight:bold;
+}
+.data h3{
+    font-size:16px;
+    font-weight:500;
+}
+.report{
+    width:122px;
+    margin-right:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.report a{
+    font-size:16px;
+}
+.datareported{
+    display:none;
+}
+.datareported__active{
+    display:flex;
+    position:absolute;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    background-color:rgba(252, 234, 233, 0.41);
+    align-items:center;
+    justify-content:center;
+}
+.form{
+    width:90%;
+    height:90%;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    padding:10px;
+    background-color:#fff;
+}
+.form__close{
+    height:20px;
+    align-self:flex-end;
+    cursor:pointer;
+}
+.form div{
+    display:flex;
+    flex-direction:column;
+}
+.form div input{
+    height:50px;
+    border-radius:4px;
+    font-size:24px;
+}
+.form div textarea{
+    resize:none;
+    font-size:1rem;
+    height:200px;
+}
+.btn__container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+.edit{
+    width:122px;
+    margin-right:10px;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+}
+.icon{
+    font-size:34px;
+}

@@ -1,0 +1,26 @@
+.container{
+    width:100vw;
+    height:100vh;
+    background:  linear-gradient(to right,#EF3B36, #ffffff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.form{
+    width:75vw;
+    height:70vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+}
+.inputs{
+    height:70%;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+}
+.inputs input{
+    height:30px;
+    border-radius:3px;
+    font-size:20px;
+}

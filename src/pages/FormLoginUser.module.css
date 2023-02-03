@@ -1,0 +1,38 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to right, #ef3b36, #ffffff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form{
+    width:75vw;
+    height:70vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+    
+}
+.input{
+    height: 65px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+.input input{
+    height:30px;
+    border-radius:3px;
+    font-size:20px;
+}
+.helper{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+@media (min-width:960px){
+  .form{
+    width: 50%;
+  }
+}
