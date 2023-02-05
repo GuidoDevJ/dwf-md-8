@@ -64,3 +64,20 @@ export async function getUserById(token: string, id: number) {
     return new Error("error:" + error);
   }
 }
+
+export async function sendEmail(token:string,to:string,petName:string,fullName:string,phone:string,data:string,){
+  try {
+    console.log("desde la api "+fullName)
+    const res = await fetch(`https://des-k648.onrender.com/sendemail`, {
+      method: "post",
+      body: JSON.stringify({ to, petName,fullName,phone,data }),
+      headers: { "Content-Type": "application/json",
+      "Authorization": "Bearer " + token, },
+    });
+    console.log(res)
+    let datos = await res.json()
+    return datos;
+  } catch (error) {
+    return new Error("error" + error);
+  }
+}

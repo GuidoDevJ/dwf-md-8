@@ -1,5 +1,3 @@
-import React, { useState,useEffect } from "react";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { Header } from "../components/Header";
 import { PetCard } from "../components/PetCard";
 import { coordUser } from "../hooks/atoms";
@@ -8,7 +6,6 @@ import { Btn } from "../ui/Btn";
 import css from "./Home.module.css";
 
 export const Home = () => {
-  let [data, setData] = useState([]);
   const {giveCoords,pet} = useUsersPets()
     return (
     <>
@@ -24,7 +21,7 @@ export const Home = () => {
         </div>
         <div className={css.cards}>
           {pet.length > 0 ?pet.map((dog:any)=>
-            <PetCard url={dog.img} name={dog.name}></PetCard>
+            <PetCard url={dog.img} name={dog.name} email={dog.email} key={dog.id}></PetCard>
             ) :null}
         </div>
       </div>

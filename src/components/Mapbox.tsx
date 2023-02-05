@@ -4,6 +4,8 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import searchApi from "../helpers/searchApi";
 import { H3 } from "../ui/H3";
 import { InputLabel } from "../ui/InputLabel";
+import { useRecoilState } from 'recoil';
+import { petCoords } from '../hooks/petData';
 let initialViewState = {
   longitude: -122.4,
   latitude: 37.8,
@@ -12,7 +14,7 @@ let initialViewState = {
 
 export const Mapbox = ({ lat, lng }: any) => {
   const mapRef = useRef<MapRef>(null);
-
+  const [coords,setCoords] = useRecoilState(petCoords)
   const onSelectCity = useCallback(({ longitude, latitude }: any) => {
     mapRef.current?.flyTo({ center: [longitude, latitude], duration: 2000 });
   }, []);
@@ -26,6 +28,12 @@ export const Mapbox = ({ lat, lng }: any) => {
       longitude: viewState.longitude,
       latitude: viewState.latitude,
     });
+    setCoords({
+      ...coords,
+      lng:viewState.longitude,
+      lat:viewState.latitude
+    })
+
     console.log(viewState);
   }, [viewState]);
 

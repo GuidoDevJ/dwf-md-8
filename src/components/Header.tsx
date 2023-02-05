@@ -4,6 +4,7 @@ import hambur from "../assets/hambur.png";
 import css from "../components/Header.module.css";
 import { useRecoilState } from "recoil";
 import { dataUsuario } from "../hooks/atoms";
+import { Link } from "react-router-dom";
 export const Header = () => {
   let [user,setUser] = useRecoilState(dataUsuario)
   const [active, setActive] = useState(false);
@@ -36,9 +37,7 @@ export const Header = () => {
             </a>
           </li>
           <li>
-            <a href="#" className={css.reportPet}>
-              Reportar mascota
-            </a>
+            <Link to={"/report"} className={css.reportPet}>Reportar mascota</Link>
           </li>
         </ul>
         <div className={css.menu__options__me}>

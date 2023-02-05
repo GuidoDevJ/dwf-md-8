@@ -9,14 +9,17 @@ import { H1 } from "../ui/H1";
 import { Input } from "../ui/Input";
 import { InputLabel } from "../ui/InputLabel";
 import css from "./Report.module.css";
+import { useReportPet } from '../hooks/useReportPet';
 
 export const Report = () => {
-  const [url, SetUrl] = useRecoilState(petUrlImage);
+    // const [url, SetUrl] = useRecoilState(petUrlImage);
+    const {uploadImage} = useReportPet()
+
   return (
     <>
       <div className={css.container}>
         <Header />
-        <div className={css.container_body}>
+        <form className={css.container_body} onSubmit={(e:any)=>uploadImage(e)}>
           <H1>Reportar mascota perdida</H1>
           <label htmlFor="Nombre"></label>
           <InputLabel name="Nombre" textLabel="Nombre" type="text"/>
@@ -24,7 +27,7 @@ export const Report = () => {
           <Mapbox />
           <Btn color="#FF9DF5">Reportar como perdido</Btn>
           <Btn color="#CDCDCD">Cancelar</Btn>
-        </div>
+        </form>
       </div>
     </>
   );

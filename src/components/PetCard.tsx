@@ -2,8 +2,26 @@ import React, { useState } from "react";
 import { Btn } from "../ui/Btn";
 import ContImg from "../ui/ContImg";
 import styles from "./PetCard.module.css";
-export const PetCard = ({ url,name }: any) => {
+import { useEmail } from '../hooks/useEmail';
+
+const name = {
+  htmlFor:"name",
+  name:"fullname",
+}
+const telephone = {
+  htmlFor:"telephone",
+  name:"telephone"
+}
+
+const data = {
+  htmlFor:"mensaje",
+  name:"mensaje"
+
+}
+
+export const PetCard = ({ url,name,email }: any) => {
   const [active, setActive] = useState(false);
+  const{handlerSubmit}= useEmail()
   function showPanel(e: any) {
     e.preventDefault();
     setActive(true);
@@ -11,6 +29,7 @@ export const PetCard = ({ url,name }: any) => {
   function hiddPanel() {
     setActive(false);
   }
+  
   return (
     <div className={styles.container}>
       <div className={styles.image}>
@@ -29,7 +48,10 @@ export const PetCard = ({ url,name }: any) => {
       <div
         className={!active ? styles.datareported : styles.datareported__active}
       >
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={(e:any)=>{
+          handlerSubmit(e,email,name)
+          showPanel(e)
+        }}>
           <div className={styles.form__close}>
             <span className={styles.cross} onClick={hiddPanel}>
               X
@@ -37,16 +59,16 @@ export const PetCard = ({ url,name }: any) => {
           </div>
           <h1>Reportar Informacion de {name}</h1>
           <div>
-            <label htmlFor="name">Tu Nombre</label>
-            <input type="text" />
+            <label htmlFor="name" >Tu Nombre</label>
+            <input type="text" name="fullname" />
           </div>
           <div>
             <label htmlFor="telefono">Tu Telefono</label>
-            <input type="text" className="phone" />
+            <input type="text" className="phone" name="telephone"/>
           </div>
           <div>
             <label htmlFor="description">Donde lo viste?</label>
-            <textarea className="acerca"></textarea>
+            <textarea className="acerca" name="mensaje"></textarea>
           </div>
           <div className={styles.btn__container}>
             <Btn color="#FF9DF5">Enviar</Btn>

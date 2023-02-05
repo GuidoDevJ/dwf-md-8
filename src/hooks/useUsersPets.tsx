@@ -32,11 +32,19 @@ export const useUsersPets = () => {
       dogsToPrint = dogsToPrint.filter(dog=>dog.name !== "SequelizeConnectionError")
       let users = await Promise.all(
         dogsToPrint.map(async(dog:any)=>{
-            return await getUserById(token,dog.userId)
+          console.log(dog)
+            return await getUserById(token,dog.UserId)
         })
       )
-      console.log(users)
-    //   setPets(dogsToPrint as any) 
+      let dogsAndUsersData = dogsToPrint.map((dog:any)=>{
+        let userOfDog = users.find(user=>user.id === dog.UserId)
+        return {
+          ...dog,
+          email:userOfDog.email
+        }
+      })
+      console.log("final= ", dogsAndUsersData)
+          setPets(dogsAndUsersData as any) 
     });
   }
 
