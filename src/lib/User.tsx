@@ -12,6 +12,25 @@ export async function signIn(email: any, password: any) {
   }
 }
 
+export async function getDataUser(token:string){
+  try {
+    let result = await fetch(
+      `https://des-k648.onrender.com/me`,
+      {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+    let datos = await result.json();
+    return datos;
+  } catch (error) {
+    return new Error("error:" + error);
+  }
+}
+
 export async function CreateAndAuthUser(
   email: string,
   password: string,
@@ -75,6 +94,20 @@ export async function sendEmail(token:string,to:string,petName:string,fullName:s
       "Authorization": "Bearer " + token, },
     });
     console.log(res)
+    let datos = await res.json()
+    return datos;
+  } catch (error) {
+    return new Error("error" + error);
+  }
+}
+
+export async function getAllPetsUser(token:string){
+  try {
+    const res = await fetch(`https://des-k648.onrender.com/getPetsUserMe`, {
+      method: "get",
+      headers: { "Content-Type": "application/json",
+      "Authorization": "Bearer " + token, },
+    });
     let datos = await res.json()
     return datos;
   } catch (error) {

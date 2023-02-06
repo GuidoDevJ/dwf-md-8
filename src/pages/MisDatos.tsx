@@ -1,17 +1,21 @@
 import React from "react";
+import { useRecoilState } from "recoil";
 import { Header } from "../components/Header";
+import { dataUsuario } from "../hooks/atoms";
 import { Btn } from "../ui/Btn";
 import { H1 } from "../ui/H1";
 import { InputLabel } from "../ui/InputLabel";
 import css from "./MisDatos.module.css";
 export const MisDatos = () => {
+  const [userData, setDataUser] = useRecoilState(dataUsuario);
+
   return (
     <>
       <div className={css.container}>
         <Header />
         <div className={css.container_body}>
           <H1>Mis Datos</H1>
-          <InputLabel name="nombre" textLabel="Nombre" type="text" />
+          <InputLabel name="nombre" textLabel="Nombre" type="text" namePetOrUser={userData.name}/>
           <InputLabel name="password" textLabel="Contraseña" type="password" />
           <InputLabel
             name="repass"

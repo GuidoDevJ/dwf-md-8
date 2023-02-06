@@ -59,3 +59,36 @@ export async function uploadDataAlgolia(token:string,obj:{}){
     return new Error("error" + error);
   }
 }
+export async function updateDataDB(token:string,obj:{},id:number){
+  console.log(obj)
+  try {
+    console.log(token)
+    const res = await fetch(`https://des-k648.onrender.com/updatePetDb/${id}`, {
+      method: "put",
+      headers: { "Content-Type": "application/json",
+      "Authorization": "Bearer " + token, },
+      body:JSON.stringify(obj)
+    });
+    let data = await res.json()
+    return data;
+  } catch (error) {
+    return new Error("error" + error);
+  }
+}
+export async function updateDataAlgolia(token:string,obj:{},id:number){
+  console.log(obj)
+
+  try {
+    console.log(token)
+    const res = await fetch(`https://des-k648.onrender.com/updatePetAlgolia/${id}`, {
+      method: "put",
+      headers: { "Content-Type": "application/json",
+      "Authorization": "Bearer " + token, },
+      body:JSON.stringify(obj)
+    });
+    let data = await res.json()
+    return data;
+  } catch (error) {
+    return new Error("error" + error);
+  }
+}

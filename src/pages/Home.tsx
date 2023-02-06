@@ -1,12 +1,20 @@
+import {useEffect} from "react"
+import { useRecoilState } from "recoil";
 import { Header } from "../components/Header";
 import { PetCard } from "../components/PetCard";
-import { coordUser } from "../hooks/atoms";
-import { useUsersPets } from "../hooks/useUsersPets";
+import { coordUser, dataUsuario } from "../hooks/atoms";
+import { useUsersPets } from "../hooks/useReportPetsNear";
+import { getDataUser } from "../lib/User";
 import { Btn } from "../ui/Btn";
 import css from "./Home.module.css";
 
 export const Home = () => {
+  const [userData, setDataUser] = useRecoilState(dataUsuario);
+
   const {giveCoords,pet} = useUsersPets()
+  useEffect(()=>{
+    console.log(userData)
+  },[])
     return (
     <>
       <Header />

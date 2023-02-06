@@ -6,36 +6,37 @@ import { H3 } from "../ui/H3";
 import { InputLabel } from "../ui/InputLabel";
 import { useRecoilState } from 'recoil';
 import { petCoords } from '../hooks/petData';
-let initialViewState = {
-  longitude: -122.4,
-  latitude: 37.8,
-  zoom: 14,
-};
+const initialValue={
+  latitude:-27.461195,
+  longitude:-58.836841
+}
 
-export const Mapbox = ({ lat, lng }: any) => {
+export const Mapbox = () => {
+  
+ const [coords,setCoords] = useRecoilState(petCoords)
+ 
   const mapRef = useRef<MapRef>(null);
-  const [coords,setCoords] = useRecoilState(petCoords)
   const onSelectCity = useCallback(({ longitude, latitude }: any) => {
     mapRef.current?.flyTo({ center: [longitude, latitude], duration: 2000 });
   }, []);
 
-  const [viewState, SetViewState] = useState(initialViewState);
-  const [input, setInput] = useState();
-
   useEffect(() => {
-    console.log("cambiand");
     onSelectCity({
-      longitude: viewState.longitude,
-      latitude: viewState.latitude,
+      longitude: coords.longitude,
+      latitude: coords.latitude,
     });
-    setCoords({
-      ...coords,
-      lng:viewState.longitude,
-      lat:viewState.latitude
-    })
+    
+  }, [coords]);
 
-    console.log(viewState);
-  }, [viewState]);
+  useEffect(()=>{
+    return()=>{
+      setCoords({
+        ...coords,
+        ...initialValue
+      })
+    }
+  },[])
+
 
   const debounceRef = useRef<NodeJS.Timeout>();
   const setSearchQuery = async (e: any) => {
@@ -43,9 +44,8 @@ export const Mapbox = ({ lat, lng }: any) => {
     debounceRef.current = setTimeout(async () => {
       if (e.target.value !== "") {
         const res = await searchApi.get(`/${e.target.value}.json`);
-        console.log(res.data.features[0]);
-        SetViewState({
-          ...viewState,
+        setCoords({
+          ...coords,
           latitude: res.data.features[0].center[1],
           longitude: res.data.features[0].center[0],
           zoom: 14,
@@ -54,9 +54,8 @@ export const Mapbox = ({ lat, lng }: any) => {
     }, 1000);
   };
   const handleAddClick = (e: any) => {
-    // const [longitude, latitude] = e.lngLat;
-    SetViewState({
-      ...viewState,
+    setCoords({
+      ...coords,
       latitude: e.lngLat.lat,
       longitude: e.lngLat.lng,
     });
@@ -67,7 +66,7 @@ export const Mapbox = ({ lat, lng }: any) => {
     <>
       <Map
         ref={mapRef}
-        initialViewState={viewState}
+        initialViewState={coords}
         mapboxAccessToken={
           "pk.eyJ1IjoiZ3VpZG9kZXZqc2pyIiwiYSI6ImNsYng0ZG13MjE4b2Ezb3FvaWdlOWx2bjIifQ.u6htqs0dnoZ48UArWEAAxQ"
         }
@@ -76,8 +75,8 @@ export const Mapbox = ({ lat, lng }: any) => {
         onClick={(e) => handleAddClick(e)}
       >
         <Marker
-          longitude={viewState.longitude}
-          latitude={viewState.latitude}
+          longitude={coords.longitude}
+          latitude={coords.latitude}
           anchor="bottom"
         ></Marker>
       </Map>

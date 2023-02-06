@@ -12,9 +12,7 @@ import css from "./Report.module.css";
 import { useReportPet } from '../hooks/useReportPet';
 
 export const Report = () => {
-    // const [url, SetUrl] = useRecoilState(petUrlImage);
     const {uploadImage} = useReportPet()
-
   return (
     <>
       <div className={css.container}>

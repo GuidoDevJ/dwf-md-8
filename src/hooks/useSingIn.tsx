@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { signIn } from "../lib/User";
+import { getDataUser, signIn } from "../lib/User";
 import { dataUsuario } from "./atoms";
 
 export const useSingIn = () => {
@@ -20,10 +20,8 @@ export const useSingIn = () => {
       if (!res.token) {
         alert("Lo siento usuario o contraseña incorrecto");
       } else {
-        setDataUser({
-          email: email.value,
-          token: res.token,
-        });
+        let datos = await getDataUser(res.token)
+        setDataUser({...datos})
         navigate("/home");
       }
     }
