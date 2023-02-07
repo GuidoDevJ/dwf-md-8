@@ -68,6 +68,7 @@ export async function getAllPetsNear(token: string, lat: number, lng: number) {
 }
 
 export async function getUserById(token: string, id: number) {
+  console.log(token)
   try {
     let result = await fetch(`https://des-k648.onrender.com/getUser/${id}`, {
       method: "get",
@@ -102,11 +103,44 @@ export async function sendEmail(token:string,to:string,petName:string,fullName:s
 }
 
 export async function getAllPetsUser(token:string){
+  console.log(token)
   try {
     const res = await fetch(`https://des-k648.onrender.com/getPetsUserMe`, {
       method: "get",
       headers: { "Content-Type": "application/json",
       "Authorization": "Bearer " + token, },
+    });
+    let datos = await res.json()
+    return datos;
+  } catch (error) {
+    return new Error("error" + error);
+  }
+}
+
+export async function UpdateDataUserDB(token:string,data:{name:string,email:string}){
+  console.log(token)
+
+  try {
+    const res = await fetch(`https://des-k648.onrender.com/updateUser`, {
+      method: "put",
+      headers: { "Content-Type": "application/json",
+      "Authorization": "Bearer " + token, },
+      body:JSON.stringify(data)
+    });
+    let datos = await res.json()
+    return datos;
+  } catch (error) {
+    return new Error("error" + error);
+  }
+}
+export async function UpdatePassword(token:string,data:{password:string}){
+  console.log(token)
+  try {
+    const res = await fetch(`https://des-k648.onrender.com/updatepassword`, {
+      method: "put",
+      headers: { "Content-Type": "application/json",
+      "Authorization": "Bearer " + token, },
+      body:JSON.stringify(data)
     });
     let datos = await res.json()
     return datos;

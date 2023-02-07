@@ -6,14 +6,15 @@ import { Btn } from "../ui/Btn";
 import { H1 } from "../ui/H1";
 import { InputLabel } from "../ui/InputLabel";
 import css from "./MisDatos.module.css";
+import { useUpdateDataUser } from '../hooks/useUpdateDataUser';
 export const MisDatos = () => {
   const [userData, setDataUser] = useRecoilState(dataUsuario);
-
+  const {handlerUpdateDataUser} = useUpdateDataUser()
   return (
     <>
       <div className={css.container}>
         <Header />
-        <div className={css.container_body}>
+        <form className={css.container_body} onSubmit={(e:any)=>handlerUpdateDataUser(e,userData.token,userData.email)}>
           <H1>Mis Datos</H1>
           <InputLabel name="nombre" textLabel="Nombre" type="text" namePetOrUser={userData.name}/>
           <InputLabel name="password" textLabel="Contraseña" type="password" />
@@ -23,7 +24,7 @@ export const MisDatos = () => {
             type="password"
           />
           <Btn color="#FF9DF5">Guardar</Btn>
-        </div>
+        </form>
       </div>
     </>
   );

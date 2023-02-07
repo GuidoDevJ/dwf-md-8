@@ -21,7 +21,7 @@ export const useSingIn = () => {
         alert("Lo siento usuario o contraseña incorrecto");
       } else {
         let datos = await getDataUser(res.token)
-        setDataUser({...datos})
+        setDataUser({...datos,token:res.token})
         navigate("/home");
       }
     }

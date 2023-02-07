@@ -28,7 +28,7 @@ export const useCreateUser = () => {
       const resToken = await signIn(email.value, password.value);
       if (resToken.token !== "") {
         let datos = await getDataUser(resToken.token)
-        setDataUser({...datos})
+        setDataUser({...datos,token:resToken.token})
         navigate("/home");
       }
     }
