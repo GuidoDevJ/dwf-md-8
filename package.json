@@ -17,9 +17,11 @@
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-icons": "^4.7.1",
+    "react-loader-spinner": "^5.3.4",
     "react-map-gl": "^7.0.21",
     "react-router-dom": "^6.7.0",
     "recoil": "^0.7.6",
+    "sweetalert2": "^11.7.1",
     "vite-plugin-react-css-modules": "^1.0.0"
   },
   "devDependencies": {

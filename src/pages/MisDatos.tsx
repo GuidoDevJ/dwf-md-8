@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { Header } from "../components/Header";
 import { dataUsuario } from "../hooks/atoms";
@@ -7,8 +7,10 @@ import { H1 } from "../ui/H1";
 import { InputLabel } from "../ui/InputLabel";
 import css from "./MisDatos.module.css";
 import { useUpdateDataUser } from '../hooks/useUpdateDataUser';
+import { useLocalStorage } from "../hooks/useLocalStorage";
 export const MisDatos = () => {
-  const [userData, setDataUser] = useRecoilState(dataUsuario);
+  const data = useLocalStorage()
+   const [userData, setDataUser] = useRecoilState(dataUsuario);
   const {handlerUpdateDataUser} = useUpdateDataUser()
   return (
     <>

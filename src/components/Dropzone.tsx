@@ -35,7 +35,6 @@ export const Dropzone = ({img}:any) => {
       setImages([img])
     }
     return ()=> {
-      console.log("Saliendo")
       setImages([])
     }
   },[img])

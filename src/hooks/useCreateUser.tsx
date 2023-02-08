@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import Swal from "sweetalert2";
 import { CreateAndAuthUser, getDataUser, signIn } from "../lib/User";
 import { dataUsuario } from "./atoms";
 
 export const useCreateUser = () => {
-  const setDataUser = useSetRecoilState(dataUsuario);
+  const [dataUser,setDataUser] = useRecoilState(dataUsuario);
   const navigate = useNavigate();
 
   async function handlerSubmit(e: Event) {
@@ -21,13 +22,16 @@ export const useCreateUser = () => {
     );
     const data = await res.json();
     if (!data.createdAuth) {
-      alert(
-        "Este email ya esta siendo usado, por favor dirijase para ingresar"
-      );
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Este email ya esta en uso',
+      })
     } else {
       const resToken = await signIn(email.value, password.value);
       if (resToken.token !== "") {
         let datos = await getDataUser(resToken.token)
+        localStorage.setItem("dataUser",JSON.stringify({...datos,token:res.token}))
         setDataUser({...datos,token:resToken.token})
         navigate("/home");
       }

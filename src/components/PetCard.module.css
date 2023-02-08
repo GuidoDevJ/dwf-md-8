@@ -59,12 +59,13 @@
 }
 .form{
     width:90%;
-    height:90%;
+    height:auto;
     display:flex;
     flex-direction:column;
     justify-content:space-between;
     padding:10px;
     background-color:#fff;
+    border: solid #000 2px;
 }
 .form__close{
     height:20px;

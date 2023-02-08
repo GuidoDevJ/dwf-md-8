@@ -4,13 +4,14 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { getPetById } from "../lib/Pets";
 import { getAllPetsNear, getUserById } from "../lib/User";
 import { coordUser, dataUsuario } from "./atoms";
+import { useLocalStorage } from "./useLocalStorage";
 
 export const useUsersPets = () => {
-
+  const data = useLocalStorage()
   const [userData, setDataUser] = useRecoilState(dataUsuario);
+  let [find,SetFinding] = useState(false)
   const token = userData.token;
   let [pet, setPets] = useState([]);
-  // const setCoords = useSetRecoilState(coordUser)
   const [coords, setCoords] = useRecoilState(coordUser);
   function giveCoords() {
     navigator.geolocation.getCurrentPosition(async function (position) {
@@ -18,6 +19,7 @@ export const useUsersPets = () => {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       });
+      SetFinding(true)
       let dogs = await getAllPetsNear(
         token,
         position.coords.latitude,
@@ -44,17 +46,9 @@ export const useUsersPets = () => {
           email: userOfDog.email,
         };
       });
-      console.log("final= ", dogsAndUsersData);
       setPets(dogsAndUsersData as any);
-      
+      SetFinding(false)
     });
   }
-
-  useEffect(() => {
-    console.log(pet);
-  }, [pet]);
-useEffect(()=>{
-  console.log(userData)
-},[])
-  return { pet, giveCoords };
+  return { pet, giveCoords,find,SetFinding };
 };

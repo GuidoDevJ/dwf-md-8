@@ -4,6 +4,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { Dropzone } from '../components/Dropzone';
 import { Header } from '../components/Header';
 import { Mapbox } from '../components/Mapbox';
+import { dataUsuario } from '../hooks/atoms';
 import { selectedPet, stateOfPet } from '../hooks/petData';
 import { useGetDataPet } from '../hooks/useGetDataPet';
 import { useUpdateDataPet } from '../hooks/useUpdateDataPet';
@@ -17,7 +18,6 @@ export const EditPet = () => {
   let datos = useGetDataPet()
   let {hadlerUpdateSubmit} = useUpdateDataPet()
   let [petSelected,setPetSelected] = useRecoilState(selectedPet)
-
 
     return (
         <>

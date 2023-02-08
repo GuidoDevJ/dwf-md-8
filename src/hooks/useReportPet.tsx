@@ -4,9 +4,11 @@ import { useRecoilState } from 'recoil';
 import { createPetDB, uploadDataAlgolia, uploadImagePet } from '../lib/Pets';
 import { dataUsuario } from './atoms';
 import { petUrlImage, petCoords } from './petData';
+import { useLocalStorage } from './useLocalStorage';
 
 export const useReportPet = () => {
   let navegate = useNavigate();
+  const datos = useLocalStorage()
 
     let [data,setData] = useRecoilState(dataUsuario)
     let [url,setUrl] = useRecoilState(petUrlImage)

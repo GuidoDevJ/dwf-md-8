@@ -11,7 +11,6 @@ export const Header = () => {
   const [active, setActive] = useState(false);
 
   function showOptionsLinks() {
-    console.log("cambios");
     setActive(true);
   }
   function hiddeoptions() {
@@ -20,7 +19,10 @@ export const Header = () => {
   function goToHome(){
     navegate("/home")
   }
-
+  function closeSession(){
+    localStorage.clear()
+    navegate("/")
+  }
   return (
     <header className={css.header}>
       <img src={patitas} className={css.img__icon} onClick={goToHome}/>
@@ -50,7 +52,7 @@ export const Header = () => {
         </ul>
         <div className={css.menu__options__me}>
           <h3 className={css.correo}>{(user as any).email}</h3>
-          <a href="#" className={css.singout}>
+          <a href="#" className={css.singout} onClick={closeSession}>
             Cerrar Session
           </a>
         </div>

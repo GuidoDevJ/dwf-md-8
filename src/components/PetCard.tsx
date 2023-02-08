@@ -49,8 +49,8 @@ export const PetCard = ({ url,name,email }: any) => {
         className={!active ? styles.datareported : styles.datareported__active}
       >
         <form className={styles.form} onSubmit={(e:any)=>{
-          handlerSubmit(e,email,name)
-          showPanel(e)
+          handlerSubmit(e,email,name,hiddPanel)
+          
         }}>
           <div className={styles.form__close}>
             <span className={styles.cross} onClick={hiddPanel}>

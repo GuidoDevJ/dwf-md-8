@@ -59,7 +59,6 @@ export const Mapbox = () => {
       latitude: e.lngLat.lat,
       longitude: e.lngLat.lng,
     });
-    console.log(e.lngLat);
   };
 
   return (
