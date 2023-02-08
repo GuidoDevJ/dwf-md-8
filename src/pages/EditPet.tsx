@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { Dropzone } from '../components/Dropzone';
 import { Header } from '../components/Header';
@@ -14,6 +14,13 @@ import { InputLabel } from '../ui/InputLabel';
 import css from "./Report.module.css";
 
 export const EditPet = () => {
+  const navegate = useNavigate()
+  let [data,setData] = useRecoilState(dataUsuario)
+  useEffect(()=>{
+    if(data.token === ""){
+      navegate("/")
+    }
+  },[])
   let setState = useSetRecoilState(stateOfPet)
   let datos = useGetDataPet()
   let {hadlerUpdateSubmit} = useUpdateDataPet()

@@ -12,9 +12,7 @@ export async function getPetById(token:string,id:string){
       }
 }
 export async function createPetDB(token:string,data:{}){
-  console.log(data)
   try {
-    console.log(token)
     const res = await fetch(`https://des-k648.onrender.com/createPetDb`, {
       method: "post",
       headers: { "Content-Type": "application/json",
@@ -30,7 +28,6 @@ export async function createPetDB(token:string,data:{}){
 
 export async function uploadImagePet(token:string,url:string){
   try {
-    console.log(token)
     const res = await fetch(`https://des-k648.onrender.com/uploadimage`, {
       method: "post",
       headers: { "Content-Type": "application/json",
@@ -46,7 +43,6 @@ export async function uploadImagePet(token:string,url:string){
 
 export async function uploadDataAlgolia(token:string,obj:{}){
   try {
-    console.log(token)
     const res = await fetch(`https://des-k648.onrender.com/createPetAlgolia`, {
       method: "post",
       headers: { "Content-Type": "application/json",
@@ -60,9 +56,7 @@ export async function uploadDataAlgolia(token:string,obj:{}){
   }
 }
 export async function updateDataDB(token:string,obj:{},id:number){
-  console.log(obj)
   try {
-    console.log(token)
     const res = await fetch(`https://des-k648.onrender.com/updatePetDb/${id}`, {
       method: "put",
       headers: { "Content-Type": "application/json",
@@ -76,10 +70,8 @@ export async function updateDataDB(token:string,obj:{},id:number){
   }
 }
 export async function updateDataAlgolia(token:string,obj:{},id:number){
-  console.log(obj)
 
   try {
-    console.log(token)
     const res = await fetch(`https://des-k648.onrender.com/updatePetAlgolia/${id}`, {
       method: "put",
       headers: { "Content-Type": "application/json",

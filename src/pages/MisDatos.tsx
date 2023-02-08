@@ -8,8 +8,16 @@ import { InputLabel } from "../ui/InputLabel";
 import css from "./MisDatos.module.css";
 import { useUpdateDataUser } from '../hooks/useUpdateDataUser';
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useNavigate } from "react-router-dom";
 export const MisDatos = () => {
-  const data = useLocalStorage()
+  const navegate = useNavigate()
+  let [data,setData] = useRecoilState(dataUsuario)
+  useEffect(()=>{
+    if(data.token === ""){
+      navegate("/")
+    }
+  },[])
+  const datos = useLocalStorage()
    const [userData, setDataUser] = useRecoilState(dataUsuario);
   const {handlerUpdateDataUser} = useUpdateDataUser()
   return (

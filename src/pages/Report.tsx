@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useRecoilState } from "recoil";
 import { Dropzone } from "../components/Dropzone";
 import { Header } from "../components/Header";
@@ -10,8 +10,17 @@ import { Input } from "../ui/Input";
 import { InputLabel } from "../ui/InputLabel";
 import css from "./Report.module.css";
 import { useReportPet } from '../hooks/useReportPet';
+import { useNavigate } from "react-router-dom";
+import { dataUsuario } from "../hooks/atoms";
 
 export const Report = () => {
+  const navegate = useNavigate()
+  let [data,setData] = useRecoilState(dataUsuario)
+  useEffect(()=>{
+    if(data.token === ""){
+      navegate("/")
+    }
+  },[])
     const {uploadImage} = useReportPet()
   return (
     <>

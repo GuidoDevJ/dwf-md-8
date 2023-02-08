@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { Header } from "../components/Header";
 import { Loader } from "../components/Loader";
@@ -10,6 +11,13 @@ import { H3 } from "../ui/H3";
 import css from "./PetReported.module.css"
 
 export const PetsReported = () => {
+  const navegate = useNavigate()
+  let [data,setData] = useRecoilState(dataUsuario)
+  useEffect(()=>{
+    if(data.token === ""){
+      navegate("/")
+    }
+  },[])
   let [pets, setPets] = useState([] as any);
   let [find,SetFinding] = useState(false)
   let [dataUser,setDataUser] = useRecoilState(dataUsuario)

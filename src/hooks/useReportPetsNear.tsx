@@ -6,7 +6,9 @@ import { getAllPetsNear, getUserById } from "../lib/User";
 import { coordUser, dataUsuario } from "./atoms";
 import { useLocalStorage } from "./useLocalStorage";
 
+
 export const useUsersPets = () => {
+
   const data = useLocalStorage()
   const [userData, setDataUser] = useRecoilState(dataUsuario);
   let [find,SetFinding] = useState(false)

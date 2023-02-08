@@ -68,7 +68,6 @@ export async function getAllPetsNear(token: string, lat: number, lng: number) {
 }
 
 export async function getUserById(token: string, id: number) {
-  console.log(token)
   try {
     let result = await fetch(`https://des-k648.onrender.com/getUser/${id}`, {
       method: "get",
@@ -78,7 +77,6 @@ export async function getUserById(token: string, id: number) {
       },
     });
     let user = await result.json();
-    console.log(user)
     return user;
   } catch (error) {
     return new Error("error:" + error);
@@ -87,14 +85,12 @@ export async function getUserById(token: string, id: number) {
 
 export async function sendEmail(token:string,to:string,petName:string,fullName:string,phone:string,data:string,){
   try {
-    console.log("desde la api "+fullName)
     const res = await fetch(`https://des-k648.onrender.com/sendemail`, {
       method: "post",
       body: JSON.stringify({ to, petName,fullName,phone,data }),
       headers: { "Content-Type": "application/json",
       "Authorization": "Bearer " + token, },
     });
-    console.log(res)
     let datos = await res.json()
     return datos;
   } catch (error) {
@@ -103,7 +99,6 @@ export async function sendEmail(token:string,to:string,petName:string,fullName:s
 }
 
 export async function getAllPetsUser(token:string){
-  console.log(token)
   try {
     const res = await fetch(`https://des-k648.onrender.com/getPetsUserMe`, {
       method: "get",
@@ -118,7 +113,6 @@ export async function getAllPetsUser(token:string){
 }
 
 export async function UpdateDataUserDB(token:string,data:{name:string,email:string}){
-  console.log(token)
 
   try {
     const res = await fetch(`https://des-k648.onrender.com/updateUser`, {
@@ -134,7 +128,6 @@ export async function UpdateDataUserDB(token:string,data:{name:string,email:stri
   }
 }
 export async function UpdatePassword(token:string,data:{password:string}){
-  console.log(token)
   try {
     const res = await fetch(`https://des-k648.onrender.com/updatepassword`, {
       method: "put",

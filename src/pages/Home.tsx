@@ -1,4 +1,5 @@
 import {useEffect} from "react"
+import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { Header } from "../components/Header";
 import { Loader } from "../components/Loader";
@@ -10,6 +11,14 @@ import { Btn } from "../ui/Btn";
 import css from "./Home.module.css";
 
 export const Home = () => {
+  const navegate = useNavigate()
+  let [data,setData] = useRecoilState(dataUsuario)
+  useEffect(()=>{
+    if(data.token === ""){
+      navegate("/")
+    }
+  },[])
+  
   const {giveCoords,pet,find} = useUsersPets()
     return (
     <>
