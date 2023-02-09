@@ -6,8 +6,7 @@ import { H3 } from "../ui/H3";
 import { InputLabel } from "../ui/InputLabel";
 import { useRecoilState } from 'recoil';
 import { petCoords } from '../hooks/petData';
-import * as dotenv from "dotenv"
-dotenv.config()
+const MAPBOX_TOKEN = "pk.eyJ1IjoiZ3VpZG9kZXZqc2pyIiwiYSI6ImNsYng0ZG13MjE4b2Ezb3FvaWdlOWx2bjIifQ.u6htqs0dnoZ48UArWEAAxQ"
 const initialValue={
   latitude:-27.461195,
   longitude:-58.836841
@@ -69,7 +68,7 @@ export const Mapbox = () => {
         ref={mapRef}
         initialViewState={coords}
         mapboxAccessToken={
-          `${process.env.MAPBOX_TOKEN}`
+          `${MAPBOX_TOKEN}`
         }
         style={{ width: '100%', height: 400 }}
         mapStyle="mapbox://styles/mapbox/streets-v9"

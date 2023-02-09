@@ -33,7 +33,10 @@ export const Report = () => {
           <Dropzone />
           <Mapbox />
           <Btn color="#FF9DF5">Reportar como perdido</Btn>
-          <Btn color="#CDCDCD">Cancelar</Btn>
+          <Btn color="#CDCDCD" onClick={(e:Event)=>{
+            e.preventDefault()
+            navegate("/petsreported")
+          }}>Cancelar</Btn>
         </form>
       </div>
     </>
