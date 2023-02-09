@@ -5,6 +5,9 @@ import userImg from "../assets/user.png";
 import styles from "./FormLoginUser.module.css";
 import { Helper } from "../ui/Helper";
 import { useSingIn } from "../hooks/useSingIn";
+import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+import { useEffect } from "react";
+dotenv.config()
 const emailInput = {
   typeInput: "email",
   name: "email",
@@ -16,6 +19,9 @@ const passInput = {
 
 export const FormLoginUser = () => {
 const {handlerSubmit} = useSingIn()
+useEffect(()=>{
+  console.log(process.env.MAPBOX_TOKEN)
+})
   return (
     <div className={styles.container}>
       <form className={styles.form} onSubmit={(e: any) => handlerSubmit(e)}>
