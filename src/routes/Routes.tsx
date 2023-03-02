@@ -1,5 +1,4 @@
-import React,{Suspense} from 'react'
-
+import React,{Suspense,lazy} from 'react'
 import {
     createBrowserRouter,
     RouterProvider,
@@ -7,13 +6,13 @@ import {
   import {
     RecoilRoot,
   } from 'recoil';
-import { CreateUser } from '../pages/CreateUser';
-import { EditPet } from '../pages/EditPet';
 import { FormLoginUser } from '../pages/FormLoginUser';
-import { Home } from '../pages/Home';
-import { MisDatos } from '../pages/MisDatos';
-import { PetsReported } from '../pages/PetsReported';
-import { Report } from '../pages/Report';
+const CreateUser = lazy(()=>import('../pages/CreateUser'))
+const Home = lazy(() => import("../pages/Home"));
+const EditPet = lazy(()=>import("../pages/EditPet"))
+const MisDatos = lazy(()=>import('../pages/MisDatos'))
+const PetsReported = lazy(()=>import('../pages/PetsReported'))
+const Report = lazy(()=>import('../pages/Report'))
 const routes = createBrowserRouter([
     {
         path:"/",

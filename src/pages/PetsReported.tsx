@@ -10,7 +10,7 @@ import { H1 } from "../ui/H1";
 import { H3 } from "../ui/H3";
 import css from "./PetReported.module.css"
 
-export const PetsReported = () => {
+export default function PetsReported(){
   const navegate = useNavigate()
   let [data,setData] = useRecoilState(dataUsuario)
   useEffect(()=>{

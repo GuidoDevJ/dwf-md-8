@@ -13,7 +13,7 @@ import { H1 } from '../ui/H1';
 import { InputLabel } from '../ui/InputLabel';
 import css from "./Report.module.css";
 
-export const EditPet = () => {
+export default function EditPet(){
   const navegate = useNavigate()
   let [data,setData] = useRecoilState(dataUsuario)
   useEffect(()=>{

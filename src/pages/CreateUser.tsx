@@ -5,7 +5,7 @@ import userImg from "../assets/user.png";
 import css from "./CreateUser.module.css";
 import { useCreateUser } from "../hooks/useCreateUser";
 
-export const CreateUser = () => {
+export default function CreateUser(){
   const { handlerSubmit } = useCreateUser();
 
   return (

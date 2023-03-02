@@ -9,7 +9,7 @@ import css from "./MisDatos.module.css";
 import { useUpdateDataUser } from '../hooks/useUpdateDataUser';
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useNavigate } from "react-router-dom";
-export const MisDatos = () => {
+export default function MisDatos(){
   const navegate = useNavigate()
   let [data,setData] = useRecoilState(dataUsuario)
   useEffect(()=>{

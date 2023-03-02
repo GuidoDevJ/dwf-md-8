@@ -13,7 +13,7 @@ import { useReportPet } from '../hooks/useReportPet';
 import { useNavigate } from "react-router-dom";
 import { dataUsuario } from "../hooks/atoms";
 
-export const Report = () => {
+export default function Report(){
   const navegate = useNavigate()
   let [data,setData] = useRecoilState(dataUsuario)
   useEffect(()=>{

@@ -10,7 +10,7 @@ import { getDataUser } from "../lib/User";
 import { Btn } from "../ui/Btn";
 import css from "./Home.module.css";
 
-export const Home = () => {
+export default function  Home(){
   const navegate = useNavigate()
   let [data,setData] = useRecoilState(dataUsuario)
   useEffect(()=>{
